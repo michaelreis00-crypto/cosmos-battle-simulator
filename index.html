@@ -9,7 +9,7 @@
 header{text-align:center;padding:26px 14px 16px}h1{margin:0;color:var(--gold);font-size:clamp(1.5rem,4vw,2.5rem)}header p{color:var(--muted);max-width:800px;margin:8px auto}
 main{max-width:1150px;margin:auto;padding:12px;display:grid;gap:14px}.panel{background:#14213bed;border:1px solid var(--line);border-radius:15px;padding:15px;box-shadow:0 10px 25px #0004}
 h2{font-size:1.15rem;margin:0 0 12px}.muted,.small{color:var(--muted)}.small{font-size:.84rem;line-height:1.5}
-.filters{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}input,select,button{font:inherit}input,select{background:#091327;color:white;border:1px solid #53688e;border-radius:8px;padding:10px;min-width:0;width:100%}
+.filters{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}input,select,button{font:inherit}input,select{background:#091327;color:white;border:1px solid #53688e;border-radius:8px;padding:10px;min-width:0;width:100%}
 .roster{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:12px}.char{background:#0b152b;border:1px solid #34496e;border-radius:10px;padding:11px}.char strong{display:block}.tag{display:inline-block;border-radius:20px;background:#263b5e;color:#dce8ff;padding:3px 8px;font-size:.73rem;margin:5px 3px 0 0}.status{font-size:.72rem;font-weight:700}.confirmed{color:var(--green)}.partial{color:var(--gold)}.estimated{color:#ffacb8}
 .teams{display:grid;grid-template-columns:1fr 1fr;gap:12px}.team h2{margin-bottom:8px}.team.a h2{color:var(--blue)}.team.b h2{color:var(--red)}.slots{display:grid;gap:7px}.slot{display:grid;grid-template-columns:1fr 75px;gap:7px}.buttons{display:flex;gap:8px;flex-wrap:wrap}.btn{border:0;border-radius:9px;padding:11px 15px;background:var(--gold);color:#171b26;font-weight:750;cursor:pointer}.btn.alt{background:#293e62;color:white;border:1px solid #50688f}.btn:disabled{opacity:.5}
 #arena{display:grid;grid-template-columns:1fr 1fr;gap:8px}.fighter{background:#091327;border:1px solid var(--line);border-radius:9px;padding:9px}.hp{height:9px;background:#542b3d;border-radius:20px;overflow:hidden;margin:6px 0}.hp span{display:block;height:100%;background:linear-gradient(90deg,#ff6179,#ffd166)}.stats{font-size:.78rem;color:var(--muted)}
@@ -17,15 +17,16 @@ h2{font-size:1.15rem;margin:0 0 12px}.muted,.small{color:var(--muted)}.small{fon
 @media(max-width:760px){.filters{grid-template-columns:1fr 1fr}.roster{grid-template-columns:1fr 1fr}.teams{grid-template-columns:1fr}}@media(max-width:460px){.roster{grid-template-columns:1fr}#arena{grid-template-columns:1fr}.panel{padding:11px}}
 </style></head>
 <body>
-<header><h1>✦ SIMULADOR CÓSMICO V3 ✦</h1><p>Saint Seiya: Legend of Justice — cadastro pesquisável, procedência dos dados e batalhas 5 contra 5.</p></header>
+<header><h1>✦ SIMULADOR CÓSMICO V4 ✦</h1><p>Saint Seiya: Legend of Justice — banco expandido por variantes, categorias e cronologia do servidor global.</p></header>
 <main>
 <section class="panel"><h2>📚 Banco de Cavaleiros</h2>
-<p class="small">A base abaixo é um primeiro lote pesquisado. “Parcial” significa que a ficha pública identifica personagem, elemento, função ou nome de habilidade, mas não fornece todos os detalhes. “Estimado” indica dado usado apenas pelo motor de simulação. Não confundir com estatísticas oficiais de conta.</p>
+<p class="small">A base abaixo foi ampliada com registros de personagens e variantes associados ao servidor global. “Parcial” significa que a ficha pública identifica personagem, elemento, função ou nome de habilidade, mas não fornece todos os detalhes. “Estimado” indica dado usado apenas pelo motor de simulação. Não confundir com estatísticas oficiais de conta.</p>
 <div class="filters">
 <input id="search" placeholder="Buscar personagem ou variante…">
 <select id="element"><option value="">Todos os elementos</option><option>Água</option><option>Fogo</option><option>Ar</option><option>Terra</option><option>Luz</option><option>Trevas</option></select>
 <select id="role"><option value="">Todas as funções</option><option>Protetor</option><option>Guerreiro</option><option>Assassino</option><option>Habilidoso</option><option>Suporte*</option></select>
 <select id="status"><option value="">Todos os status</option><option>Parcial</option><option>Confirmado</option><option>Estimado</option></select>
+<select id="category"><option value="">Todas as categorias</option><option>Bronze</option><option>Cavaleiro de Ouro</option><option>Prata</option><option>Marina</option><option>Espectro</option><option>Deus</option><option>Lost Canvas</option></select>
 </div><div id="roster" class="roster"></div>
 <p class="small">* “Suporte” aparece em algumas fichas comunitárias antigas; a classificação oficial do jogo usa Protetor, Guerreiro, Assassino e Habilidoso.</p>
 </section>
@@ -39,6 +40,7 @@ h2{font-size:1.15rem;margin:0 0 12px}.muted,.small{color:var(--muted)}.small{fon
 <li><a href="https://ssloj.com/timeline" target="_blank" rel="noopener">SSLOJ Codex — cronologia</a>: lançamentos por região/servidor; disponibilidade global precisa ser conferida.</li>
 <li><a href="https://play.google.com/store/apps/details?id=com.wanda.saintseiya.gp.am" target="_blank" rel="noopener">Google Play — página do jogo</a>: seis elementos e quatro funções oficiais.</li>
 <li><a href="https://saintseiya.wdyxgames.com/" target="_blank" rel="noopener">Site oficial do jogo</a>: personagens e apresentação do universo.</li></ul>
+<p class="small"><b>Importante:</b> a cronologia global confirma entradas/lançamentos, mas nem todas as fichas públicas expõem elemento, classe, atributos e descrição integral das quatro habilidades. Esses campos ficam como “pendentes” até validação; não são preenchidos por suposição. Algumas variantes antigas e personagens de Prata precisam de conferência adicional no cliente global. O campo “entrada global” indica a data encontrada na cronologia consultada, não garante que a unidade esteja hoje no banner ou no pool permanente.</p>
 <p class="small">Projeto independente de fãs, sem vínculo com Wanda Games. Os nomes, imagens e marcas pertencem aos respectivos titulares. Esta ferramenta não acessa servidores, contas nem dados internos do jogo.</p></section>
 </main>
 <script>
@@ -65,12 +67,116 @@ const data=[
 ["Poseidon","—","—","Parcial","Habilidades específicas a validar","Variantes distintas; cadastro aguardando ficha completa."],
 ["Hypnos","—","—","Parcial","Habilidades específicas a validar","Cadastro aguardando confirmação da disponibilidade global."],
 ["Thanatos","—","—","Parcial","Habilidades específicas a validar","Variantes distintas; cadastro aguardando confirmação da disponibilidade global."]
-];
+,["Seiya — versão clássica", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Bronze", "2022-10-12", "Global"],
+["Shiryû — versão clássica", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Bronze", "2022-09-21", "Global"],
+["Shun — versão clássica", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Bronze", "2022-08-24", "Global"],
+["Hyôga — versão clássica", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Bronze", "2022-11-23", "Global"],
+["Ikki — versão clássica", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Bronze", "2022-12-20", "Global"],
+["Seiya — versão POG", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Bronze / POG", "2023-07-12", "Global"],
+["Seiya — variante adicional", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Bronze / variante", "2023-07-12", "Global"],
+["Shun — variante adicional", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Bronze / variante", "2023-05-24", "Global"],
+["Shiryû — variante adicional", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Bronze / variante", "2023-08-09", "Global"],
+["Hyôga — variante adicional", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Bronze / variante", "2023-03-22", "Global"],
+["Ikki — variante adicional", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Bronze / variante", "2023-01-18", "Global"],
+["Shun — variante adicional 2", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Bronze / variante", "2023-09-13", "Global"],
+["Shiryû — variante adicional 2", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Bronze / variante", "2023-09-06", "Global"],
+["Hyôga — variante adicional 2", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Bronze / variante", "2023-09-27", "Global"],
+["Seiya — variante adicional 2", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Bronze / variante", "2023-07-12", "Global"],
+["Shun — Virgo / Herdeiro da Virgem", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Bronze / variante", "2026-03-05", "Global"],
+["Shun — Armadura Divina", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Bronze / Armadura Divina", "2026-03-05", "Global"],
+["Shiryû — Armadura Divina", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Bronze / Armadura Divina", "2026-01-08", "Global"],
+["Hyôga — Armadura Divina", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Bronze / Armadura Divina", "2026-02-05", "Global"],
+["Ikki — Armadura Divina", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Bronze / Armadura Divina", "2026-06-25", "Global"],
+["Seiya — Armadura Divina", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Bronze / Armadura Divina", "2025-01-22", "Global"],
+["Shaka — Arayashiki", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Cavaleiro de Ouro / variante", "2023-10-25", "Global"],
+["Dohko — Mestre", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Cavaleiro de Ouro / variante", "2023-10-25", "Global"],
+["Saga — versão clássica", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Cavaleiro de Ouro", "2022-08-03", "Global"],
+["Aiolos — versão clássica", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Cavaleiro de Ouro", "2022-07-22", "Global"],
+["Aiolia — versão clássica", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Cavaleiro de Ouro", "2024-01-17", "Global"],
+["Shura — versão clássica", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Cavaleiro de Ouro", "2024-08-28", "Global"],
+["Dohko — versão clássica", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Cavaleiro de Ouro", "2024-07-31", "Global"],
+["Milo — versão clássica", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Cavaleiro de Ouro", "2025-10-23", "Global"],
+["Mu — versão clássica", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Cavaleiro de Ouro", "2025-12-18", "Global"],
+["Aphrodite — versão clássica", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Cavaleiro de Ouro", "2024-11-06", "Global"],
+["Camus — versão clássica", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Cavaleiro de Ouro", "2026-06-12", "Global"],
+["Aldebaran — versão clássica", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Cavaleiro de Ouro", "2026-08-27", "Global"],
+["Shion — versão clássica", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Cavaleiro de Ouro / Grande Mestre", "2023-05-31", "Global"],
+["Kanon — Gêmeos", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Cavaleiro de Ouro / variante", "2022-11-02", "Global"],
+["Kanon — variante adicional", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Cavaleiro de Ouro / variante", "2024-08-08", "Global"],
+["Ox de Touro", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Cavaleiro de Ouro / Next Dimension", "2025-08-07", "Global"],
+["Gestalt de Sagitário", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Cavaleiro de Ouro / Next Dimension", "2025-01-30", "Global"],
+["Mystoria de Aquário", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Cavaleiro de Ouro / Next Dimension", "2025-11-06", "Global"],
+["Écarlate de Escorpião", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Cavaleiro de Ouro / Next Dimension", "2025-05-29", "Global"],
+["Izo de Capricórnio", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Cavaleiro de Ouro / Next Dimension", "2025-03-13", "Global"],
+["Shijima de Virgem", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Cavaleiro de Ouro / Next Dimension", "2025-05-15", "Global"],
+["Cardinale de Peixes", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Cavaleiro de Ouro / Next Dimension", "2025-04-03", "Global"],
+["Deathtoll de Câncer", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Cavaleiro de Ouro / Next Dimension", "2024-06-19", "Global"],
+["Odysseus de Ofiúco", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Cavaleiro de Ouro / Next Dimension", "2024-07-10", "Global"],
+["Toma", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Anjo / Filme", "2025-01-08", "Global"],
+["Artémis", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Deusa", "2024-12-18", "Global"],
+["Atena — versão clássica", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Deusa", "2023-04-05", "Global"],
+["Atena — variante adicional", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Deusa / variante", "2025-10-02", "Global"],
+["Poseidon", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Deus / Marinas", "2022-12-21", "Global"],
+["Hypnos", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Deus", "2023-05-17", "Global"],
+["Thanatos", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Deus", "2023-06-21", "Global"],
+["Hades", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Deus", "2025-04-16", "Global"],
+["Thanatos — Lost Canvas", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Deus / Lost Canvas", "2026-09-10", "Global"],
+["Alone — Lost Canvas", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Deus / Lost Canvas", "2026-01-22", "Global"],
+["Sage", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Cavaleiro de Ouro / Lost Canvas", "2026-07-09", "Global"],
+["Hakurei", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Prata / Lost Canvas", "2026-06-11", "Global"],
+["Tenma — Lost Canvas", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Bronze / Lost Canvas", "2025-10-09", "Global"],
+["Albafica de Peixes", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Cavaleiro de Ouro / Lost Canvas", "2026-05-07", "Global"],
+["Minos — Lost Canvas", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Espectro / Lost Canvas", "2026-08-12", "Global"],
+["Kagaho", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Espectro / Lost Canvas", "2026-04-23", "Global"],
+["Chagall", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Espectro", "2026-04-09", "Global"],
+["Rune de Balrog", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Espectro", "2025-12-04", "Global"],
+["Sylphide de Basilisco", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Espectro", "2023-11-08", "Global"],
+["Pharaon de Esfinge", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Espectro", "2023-09-27", "Global"],
+["Charon de Aqueronte", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Espectro", "2023-08-30", "Global"],
+["Niobé de Deep", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Espectro", "2023-03-29", "Global"],
+["Myû de Papillon", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Espectro", "2023-04-26", "Global"],
+["Zélos de Sapo", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Espectro", "2023-06-14", "Global"],
+["Gigant de Ciclope", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Espectro", "2023-10-10", "Global"],
+["Queen de Alraune", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Espectro", "2024-01-31", "Global"],
+["Rhadamanthys de Wyvern", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Espectro", "2023-03-15", "Global"],
+["Minos de Griffon", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Espectro", "2023-11-22", "Global"],
+["Eaque de Garuda", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Espectro", "2026-07-10", "Global"],
+["Suikyo — Garuda", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Espectro / variante", "2025-07-10", "Global"],
+["Suikyo — Taça", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Cavaleiro / variante", "2025-08-21", "Global"],
+["Pandora", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Espectros / Deusa", "2023-02-15", "Global"],
+["Pandora — Next Dimension", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Espectros / variante", "2026-02-19", "Global"],
+["Baian de Cavalo Marinho", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Marina", "2023-02-01", "Global"],
+["Io de Scylla", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Marina", "2022-12-14", "Global"],
+["Isaac de Kraken", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Marina", "2022-12-07", "Global"],
+["Sorrento de Sirene", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Marina", "2022-11-16", "Global"],
+["Kâsa de Lymnades", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Marina", "2022-10-26", "Global"],
+["Krishna de Chrysaor", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Marina", "2022-09-14", "Global"],
+["Kanon — Dragão Marinho", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Marina / variante", "2022-11-02", "Global"],
+["Thétis de Sereia", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Marina", "2022-08-10", "Global"],
+["Orphée de Lira", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Prata / Cavaleiro", "2023-03-01", "Global"],
+["Misty de Lagarto", "—", "—", "Parcial", "Habilidades a validar", "Personagem listado em bases de elenco; data de entrada global ainda não confirmada nesta fonte.", "Prata", "—", "Validar global"],
+["Shaina de Ofiúco", "—", "—", "Parcial", "Habilidades a validar", "Personagem listado em bases de elenco; data de entrada global ainda não confirmada nesta fonte.", "Prata", "—", "Validar global"],
+["Marin de Águia", "—", "—", "Parcial", "Habilidades a validar", "Personagem listado em bases de elenco; data de entrada global ainda não confirmada nesta fonte.", "Prata", "—", "Validar global"],
+["Algol de Perseu", "—", "—", "Parcial", "Habilidades a validar", "Personagem listado em bases de elenco; data de entrada global ainda não confirmada nesta fonte.", "Prata", "—", "Validar global"],
+["Moses de Baleia", "—", "—", "Parcial", "Habilidades a validar", "Personagem listado em bases de elenco; data de entrada global ainda não confirmada nesta fonte.", "Prata", "—", "Validar global"],
+["Asterion de Cães de Caça", "—", "—", "Parcial", "Habilidades a validar", "Personagem listado em bases de elenco; data de entrada global ainda não confirmada nesta fonte.", "Prata", "—", "Validar global"],
+["Capella de Auriga", "—", "—", "Parcial", "Habilidades a validar", "Personagem listado em bases de elenco; data de entrada global ainda não confirmada nesta fonte.", "Prata", "—", "Validar global"],
+["Dante de Cérbero", "—", "—", "Parcial", "Habilidades a validar", "Personagem listado em bases de elenco; data de entrada global ainda não confirmada nesta fonte.", "Prata", "—", "Validar global"],
+["Babel de Centauro", "—", "—", "Parcial", "Habilidades a validar", "Personagem listado em bases de elenco; data de entrada global ainda não confirmada nesta fonte.", "Prata", "—", "Validar global"],
+["Jamian de Corvo", "—", "—", "Parcial", "Habilidades a validar", "Personagem listado em bases de elenco; data de entrada global ainda não confirmada nesta fonte.", "Prata", "—", "Validar global"],
+["Ptolemy de Flecha", "—", "—", "Parcial", "Habilidades a validar", "Personagem listado em bases de elenco; data de entrada global ainda não confirmada nesta fonte.", "Prata", "—", "Validar global"],
+["Sirius de Cão Maior", "—", "—", "Parcial", "Habilidades a validar", "Personagem listado em bases de elenco; data de entrada global ainda não confirmada nesta fonte.", "Prata", "—", "Validar global"],
+["Algethi de Hércules", "—", "—", "Parcial", "Habilidades a validar", "Personagem listado em bases de elenco; data de entrada global ainda não confirmada nesta fonte.", "Prata", "—", "Validar global"],
+["Dio de Mosca", "—", "—", "Parcial", "Habilidades a validar", "Personagem listado em bases de elenco; data de entrada global ainda não confirmada nesta fonte.", "Prata", "—", "Validar global"],
+["June de Camaleão", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Prata / apoio", "2023-01-04", "Global"],
+["Asclépios de Ofiúco", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Cavaleiro de Ouro / Next Dimension", "2026-06-04", "Global"],
+["Manigoldo de Câncer", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Cavaleiro de Ouro / Lost Canvas", "2026-10-29", "Global"],
+["Aldebaran — Hasgard", "—", "—", "Parcial", "Habilidades a validar", "Registro de cronologia global (GLO) do SSLOJ Codex.", "Cavaleiro de Ouro / Lost Canvas", "2026-10-29", "Global"]];
 const elMap={"Água":"Água","Fogo":"Fogo","Ar":"Ar","Terra":"Terra","Luz":"Luz","Trevas":"Trevas"};
 const stats={"Protetor":[1500,105,110,72,7],"Guerreiro":[1200,145,78,95,15],"Assassino":[1000,155,65,112,20],"Habilidoso":[1080,130,75,100,13],"Suporte*":[1150,95,85,88,8]};
 const roster=document.querySelector("#roster");
-function renderRoster(){let q=document.querySelector("#search").value.toLowerCase(),e=document.querySelector("#element").value,r=document.querySelector("#role").value,s=document.querySelector("#status").value;roster.innerHTML="";data.filter(c=>(c[0]+" "+c[5]).toLowerCase().includes(q)&&(!e||c[1]===e)&&(!r||c[2]===r)&&(!s||c[3]===s)).forEach(c=>{let d=document.createElement("article");d.className="char";let st=document.createElement("span");st.className="status "+(c[3]==="Confirmado"?"confirmed":c[3]==="Parcial"?"partial":"estimated");st.textContent="● "+c[3].toUpperCase();d.innerHTML=`<strong>${c[0]}</strong><span class="tag">${c[1]==="—"?"Elemento pendente":c[1]}</span><span class="tag">${c[2]==="—"?"Função pendente":c[2]}</span><p class="small">${c[4]}</p><p class="small">${c[5]}</p>`;d.append(st);roster.append(d)})}
-["search","element","role","status"].forEach(id=>document.getElementById(id).addEventListener(id==="search"?"input":"change",renderRoster));renderRoster();
+function renderRoster(){let q=document.querySelector("#search").value.toLowerCase(),e=document.querySelector("#element").value,r=document.querySelector("#role").value,s=document.querySelector("#status").value,k=document.querySelector("#category").value;roster.innerHTML="";data.filter(c=>(c[0]+" "+c[5]+" "+(c[6]||"")).toLowerCase().includes(q)&&(!e||c[1]===e)&&(!r||c[2]===r)&&(!s||c[3]===s)&&(!k||(c[6]||"").toLowerCase().includes(k.toLowerCase()))).forEach(c=>{let d=document.createElement("article");d.className="char";let st=document.createElement("span");st.className="status "+(c[3]==="Confirmado"?"confirmed":c[3]==="Parcial"?"partial":"estimated");st.textContent="● "+c[3].toUpperCase();d.innerHTML=`<strong>${c[0]}</strong><span class="tag">${c[6]||"Categoria a classificar"}</span><span class="tag">${c[1]==="—"?"Elemento pendente":c[1]}</span><span class="tag">${c[2]==="—"?"Função pendente":c[2]}</span><p class="small">${c[4]}</p><p class="small">${c[5]}</p><p class="small">Entrada global: ${c[7]||"não validada"} · ${c[8]||"Cadastro inicial"}</p>`;d.append(st);roster.append(d)})}
+["search","element","role","status","category"].forEach(id=>document.getElementById(id).addEventListener(id==="search"?"input":"change",renderRoster));renderRoster();
 const options=data.map((c,i)=>({name:c[0],element:c[1],role:c[2],status:c[3],skills:c[4],stats:stats[c[2]]||[1150,120,78,90,12]}));
 function makeTeam(id){let box=document.getElementById(id==="a"?"teamA":"teamB");for(let i=0;i<5;i++){let row=document.createElement("div");row.className="slot";let sel=document.createElement("select");sel.id=id+i;sel.setAttribute("aria-label","Cavaleiro "+(i+1));options.forEach((c,j)=>{let o=document.createElement("option");o.value=j;o.textContent=c.name;sel.append(o)});sel.selectedIndex=id==="a"?i:(i+5)%options.length;let lv=document.createElement("input");lv.type="number";lv.min=1;lv.max=500;lv.value=100;lv.id=id+"lv"+i;lv.title="Nível";row.append(sel,lv);box.append(row)}}
 makeTeam("a");makeTeam("b");
